@@ -1,0 +1,14 @@
+{
+  "name": "js-test",
+  "version": "0.1.0",
+  "description": "A Jest test app to test node.js and javascript code",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Vinícius Jardim",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^24.9.0"
+  }
+}
