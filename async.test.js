@@ -23,6 +23,21 @@ function cbFactory(cb, val, delay = 10) {
       }, delay);
     });
   }
+
+  // Promisse factory that, after the dalay, resolve to val if val >= 0
+  // else reject
+  function pmPositiveFactory(val, delay = 10) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(val >= 0) {
+          resolve(val);
+        }
+        else {
+          reject(`Error: ${val}`);
+        }
+      }, delay);
+    });
+  }
   
   describe('callback', () => {
     it('should recive val as parameter', done => {
@@ -114,5 +129,50 @@ function cbFactory(cb, val, delay = 10) {
         expect(err.message).toMatch('Error: 3');
         expect(list).toBeNull();
       }
+    });
+    it('Should execute finally after try', async () => {
+      let arr = [1];
+      try {
+        arr.push(await pmFactory(2));
+      }
+      finally {
+        arr.push(3);
+      }
+      expect(arr).toEqual([1, 2, 3]);
+    });
+    it('Should add a promise in index 1', async () => {
+      let arr = [1];
+      try {
+        arr.push(pmFactory(2));
+      }
+      finally {
+        arr.push(3);
+      }
+      expect(arr[0]).toBe(1);
+      expect(await arr[1]).toBe(2);
+      expect(arr[2]).toBe(3);
+    });
+  });
+
+  describe('testing resolve / rejection with await and try catch', () => {
+    it('shuld resolve to 1 (positive number resolves)', async () => {
+      let ret = 0;
+      try {
+        ret = await pmPositiveFactory(1); 
+      }
+      catch(err) {
+        ret = 2;
+      }
+      expect(ret).toBe(1);
+    });
+    it('shuld reject and catch the error (negative number rejects)', async () => {
+      let ret = 0;
+      try {
+        ret = await pmPositiveFactory(-1); 
+      }
+      catch(err) {
+        ret = -2;
+      }
+      expect(ret).toBe(-2);
     });
   });
