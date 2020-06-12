@@ -1,1 +1,0 @@
-console.log('Run test with: npm t');
