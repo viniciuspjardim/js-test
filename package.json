@@ -1,7 +1,7 @@
 {
   "name": "js-test",
   "version": "0.1.0",
-  "description": "A Jest test app to test node.js and javascript code",
+  "description": "Random tests to study JavaScript behavior",
   "main": "index.js",
   "scripts": {
     "test": "jest"
