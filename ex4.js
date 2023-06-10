@@ -1,35 +1,35 @@
 const person1 = {
-  name: 'Mia',
-  getName: function() {
-    return this.name
-  }
-}
+  name: "Mia",
+  getName: function () {
+    return this.name;
+  },
+};
 
 const person2 = {
-  name: 'Ana',
+  name: "Ana",
   getName() {
-    return this.name
-  }
-}
+    return this.name;
+  },
+};
 
 const person3 = {
-  name: 'Jão',
+  name: "John",
   getName() {
-    const foo = function() {
-      return this.name
-    }
-    return foo()
-  }
-}
+    const foo = function () {
+      return this.name;
+    };
+    return foo();
+  },
+};
 const person4 = {
-  name: 'Alice',
+  name: "Alice",
   getName() {
     const foo = () => {
-      return this.name
-    }
-    return foo()
-  }
-}
+      return this.name;
+    };
+    return foo();
+  },
+};
 
-console.log(person3.getName())
-console.log(person4.getName())
+console.log(person3.getName());
+console.log(person4.getName());
